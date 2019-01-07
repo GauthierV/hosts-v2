@@ -15,7 +15,6 @@ class UserType extends AbstractType
             ->add('Email')
             ->add('Telephone')
             ->add('Password')
-            ->add('Name')
         ;
     }
 
