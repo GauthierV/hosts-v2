@@ -13,7 +13,7 @@ class HostTableType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('adress')
+            ->add('address')
             ->add('address2')
             ->add('town')
             ->add('zipCode')
