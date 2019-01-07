@@ -2,24 +2,23 @@
 
 {% block title %} {{ controller_name }} {% endblock %}
 
-{% block stylesheet %}
-    <link rel="stylesheet" href="{{ asset('home.css') }}" />
-{% endblock %}
+{% block stylesheet %}{% endblock %}
 
 {% block body %}
     <div class="page">
 
         <!--HEADER-->
         <div class="header">
-            <img src="../assets/images/logo.jpg" alt="logo" height="120px">
+            <img src="{{ asset('images/logo.jpg') }}" alt="logo" height="120px">
             <h1>Best table</h1>
         </div>
 
     </div>
+
     <!--SLIDE-->
     <div class="fauxslide">
-        <img src="../assets/images/lieu.jpg" alt="resto" height="280px">
-        <img src="../assets/images/parc.jpg" height="280px">
+        <img src="{{ asset('images/lieu.jpg') }}" alt="resto" height="280px">
+        <img src="{{ asset('images/parc.jpg') }}" height="280px">
         <p>"Un lieu unique chargé d'histoire pour inviter des convives"</p>
     </div>
 
@@ -58,7 +57,7 @@
             <div class="result">
                 <div class="article">
                     <h2>Votre table</h2>
-                    <img src="../assets/images/side2.jpg" alt="resto" height="280px">
+                    <img src="{{ asset('images/side2.jpg') }}" alt="resto" height="280px">
                     <p>Ibi victu recreati et quiete, postquam abierat timor, vicos opulentos adorti
                         equestrium adventu cohortium, quae casu propinquabant, nec resistere planitie
                         porrecta conati digressi sunt retroque concedentes omne iuventutis robur relictum
@@ -70,7 +69,7 @@
                 </div>
                 <div class="article2">
                     <h2>Votre table</h2>
-                    <img src="../assets/images/result.jpg" alt="resto" height="280px">
+                    <img src="{{ asset('images/result.jpg') }}" alt="resto" height="280px">
                     <p>Ibi victu recreati et quiete, postquam abierat timor, vicos opulentos adorti
                         equestrium adventu cohortium, quae casu propinquabant, nec resistere planitie
                         porrecta conati digressi sunt retroque concedentes omne iuventutis robur relictum
