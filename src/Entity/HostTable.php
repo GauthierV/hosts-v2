@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\TableRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\HostTableRepository")
  */
-class Table
+class HostTable
 {
     /**
      * @ORM\Id()
@@ -24,7 +24,7 @@ class Table
     /**
      * @ORM\Column(type="text")
      */
-    private $address;
+    private $adress;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -73,14 +73,14 @@ class Table
         return $this;
     }
 
-    public function getAddress(): ?string
+    public function getAdress(): ?string
     {
-        return $this->address;
+        return $this->adress;
     }
 
-    public function setAddress(string $address): self
+    public function setAdress(string $adress): self
     {
-        $this->address = $address;
+        $this->adress = $adress;
 
         return $this;
     }
@@ -126,7 +126,7 @@ class Table
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
