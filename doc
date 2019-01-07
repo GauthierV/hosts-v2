@@ -1,0 +1,6 @@
+Instalation du projet :
+
+Après avoir cloner le projet
+
+- composer install
+- php bin/console doctrine:database:create
