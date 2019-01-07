@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\HostTable;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,6 +21,7 @@ class HostTableType extends AbstractType
             ->add('description')
             ->add('menu')
             ->add('priceRange')
+            ->add('image', FileType::class, array('label' => 'Image (JPG file)'))
         ;
     }
 

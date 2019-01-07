@@ -12,7 +12,7 @@
         <div class="card">
             <h1 class="text-center card-header" id="tableName">{{ host_table.name }}</h1>
             <div class="row card-body">
-                <img src="../../assets/images/dindemenu.jpg" class="col-md-4">
+                <img src="{{ asset('table_images/' ~ host_table.image ) }}" class="col-md-4">
                 <div class="col-md-8">
                     <h2 id="title">Description : </h2>
                     <p>{{ host_table.description }}</p>
@@ -32,11 +32,17 @@
             <div class="backgroundmap">
                 <h4>Localisez votre table !</h4>
                 <div class="map">
-                    <iframe src="https://maps.google.it/maps?q={{ host_table.address }}{{ host_table.zipCode }}{{ host_table.town }}&output=embed" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <iframe src="https://maps.google.it/maps?q={{ host_table.address }} {{ host_table.zipCode }} {{ host_table.town }}&output=embed" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                     {#<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d679.4716070806087!2d-0.8763230434664657!3d47.06207816737371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480646a381559aeb%3A0xea21c3e33efa19fc!2sCholet!5e0!3m2!1sen!2sfr!4v1543920043350" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>#}
                 </div>
             </div>
+            <a href="{{ path('host_table_index') }}"><button>back to list</button></a>
+
+            <a href="{{ path('host_table_edit', {'id': host_table.id}) }}"><button>edit</button></a>
+
+            {{ include('host_table/_delete_form.html.twig') }}
         </div>
+
     </div>
 
     {#<table class="table">#}
@@ -81,9 +87,5 @@
         {#</tbody>#}
     {#</table>#}
 
-    <a href="{{ path('host_table_index') }}">back to list</a>
 
-    <a href="{{ path('host_table_edit', {'id': host_table.id}) }}">edit</a>
-
-    {{ include('host_table/_delete_form.html.twig') }}
 {% endblock %}
