@@ -81,7 +81,7 @@ h3{
     border-width: 1px;
     border-color: #dddddd;
     padding: 53px;
-    margin: 43px;
+    margin: 47px;
     width: 20%;
     height: 100%;
     display: flex;
@@ -120,7 +120,7 @@ a.bouton2 {
     flex-flow: column wrap;
     justify-content: center;
     width: 100%;
-    padding: 8px 17px;
+    padding: 9px 18px;
     border: 1px solid yellow;
     background-color: white;
     color: rgb(54, 52, 52);
@@ -128,6 +128,7 @@ a.bouton2 {
     font-weight: bold;
     font-size: 14px;
 }
+
 a.bouton2:hover {
     background: grey;
     border: 1px solid grey;
