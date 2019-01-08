@@ -19,12 +19,19 @@ class Reservation
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    private $createdAt;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\HostTable")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $idTable;
+    private $hostTable;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -33,24 +40,36 @@ class Reservation
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getIdTable(): ?int
+    public function getHostTable(): ?HostTable
     {
-        return $this->idTable;
+        return $this->hostTable;
     }
 
-    public function setIdTable(int $idTable): self
+    public function setHostTable(?HostTable $hostTable): self
     {
-        $this->idTable = $idTable;
+        $this->hostTable = $hostTable;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
