@@ -13,7 +13,7 @@ class HomeController extends AbstractController
      */
     public function index(HostTableRepository $hostTableRepository)
     {
-        $listTable = $hostTableRepository->findAll();
+        $listTable = $hostTableRepository->findLimit();
         return $this->render('home/index.html.twig', [
             'controller_name' => 'Best table',
             'listTable' => $listTable
