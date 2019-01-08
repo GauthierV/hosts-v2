@@ -21,7 +21,7 @@ class HostTableType extends AbstractType
             ->add('description')
             ->add('menu')
             ->add('priceRange')
-            ->add('image', FileType::class, array('label' => 'Image (JPG file)'))
+            ->add('image', FileType::class, array('label' => 'Image (JPG file)', 'required' => false))
         ;
     }
 
