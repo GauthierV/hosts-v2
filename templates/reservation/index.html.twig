@@ -9,9 +9,9 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Created_at</th>
-                <th>IdTable</th>
-                <th>actions</th>
+                <th>Création</th>
+                <th>Table_id</th>
+                <th>User_id</th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +19,8 @@
             <tr>
                 <td>{{ reservation.id }}</td>
                 <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ reservation.idTable }}</td>
+                <td>{{ reservation.hostTable.id }}</td>
+                <td>{{ reservation.user.id }}</td>
                 <td>
                     <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
                     <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
