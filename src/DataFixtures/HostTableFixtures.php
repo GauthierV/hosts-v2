@@ -10,7 +10,6 @@ class HostTableFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-
         for ($i = 0; $i < 10; $i++) {
             $table1 = new HostTable();
             $table1->setName('super table ' . $i);
