@@ -13,7 +13,8 @@ class ReservationType extends AbstractType
     {
         $builder
             ->add('createdAt')
-            ->add('idTable')
+            ->add('hostTable')
+            ->add('user')
         ;
     }
 

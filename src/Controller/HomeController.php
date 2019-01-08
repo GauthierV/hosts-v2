@@ -11,7 +11,6 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="home")
      */
-
     public function index(HostTableRepository $hostTableRepository)
     {
         $listTable = $hostTableRepository->findLimit();
