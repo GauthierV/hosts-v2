@@ -26,6 +26,14 @@ class HostTableRepository extends ServiceEntityRepository
         return $result[$rand];
     }
 
+    public function findLimit()
+    {
+        return $this->createQueryBuilder('h')
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return HostTable[] Returns an array of HostTable objects
     //  */
