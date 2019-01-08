@@ -19,10 +19,18 @@ class HostTableRepository extends ServiceEntityRepository
         parent::__construct($registry, HostTable::class);
     }
 
+    public function getRandomTable()
+    {
+        $result = $this->findAll();
+        $rand = array_rand($result);
+        return $result[$rand];
+    }
+
     // /**
     //  * @return HostTable[] Returns an array of HostTable objects
     //  */
     /*
+
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('h')
