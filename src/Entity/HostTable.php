@@ -56,6 +56,11 @@ class HostTable
      */
     private $priceRange;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -153,6 +158,18 @@ class HostTable
     public function setPriceRange(?int $priceRange): self
     {
         $this->priceRange = $priceRange;
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
