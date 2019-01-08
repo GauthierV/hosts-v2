@@ -12,7 +12,7 @@ class HostTableFixtures extends Fixture
     {
         $table1 = new HostTable();
         $table1->setName('super table');
-        $table1->setAdress('9 rue du champs');
+        $table1->setAddress('9 rue du champs');
         $table1->setDescription('cest super de manger ici il ya trop démotions incroyable');
         $table1->setMenu('entrée de php - plat de git - dessert de js');
         $table1->setPriceRange(45);
