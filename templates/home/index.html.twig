@@ -2,7 +2,9 @@
 
 {% block title %} {{ controller_name }} {% endblock %}
 
-{% block stylesheet %}{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('asset/home.css') }}" />
+{% endblock %}
 
 {% block body %}
     <div class="page">
