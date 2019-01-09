@@ -36,6 +36,7 @@ class UserFixtures extends Fixture
         $trump->setPassword($this->encoder->encodePassword($trump, 'trump'));
         $trump->setEmail('trump@trump.com');
         $trump->setTelephone(0202020202);
+        $trump->setRoles(['ROLE_ADMIN']);
         $manager->persist($trump);
 
         $validmir = new User();
