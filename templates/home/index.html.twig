@@ -3,7 +3,7 @@
 {% block title %} {{ controller_name }} {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('asset/home.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}" />
 {% endblock %}
 
 {% block body %}
@@ -27,46 +27,53 @@
     <!--SEARCH-->
     <div class="contener">
         <div class="recherche">
-            <h3>Que recherchez vous ?</h3>
-            <div class="filtre-ville">
-                <label>Filtrer par département:</label>
-                <SELECT name="nom" size="1">
-                    <OPTION>44-Nantes
-                    <OPTION>14-Caen
-                    <OPTION>75-Paris
-                    <OPTION>80-Somme
-                    <OPTION>35-Rennes
-                </SELECT>
-            </div>
-            <div class="filtre-prix">
-                <label>Filtrer par prix:</label>
-                <SELECT name="nom" size="1">
-                    <OPTION>de 30 à 50
-                    <OPTION>de 50 à 70
-                    <OPTION>de 70 à 90
-                    <OPTION>de 90 à 120
-                    <OPTION>de 120 à +
-                </SELECT>
-            </div>
-            <div class="search">
-                <input class="search" type="search" placeholder="Entrez un mot-clef" name="search">
-            </div>
-            <a href="#" class="bouton2">Search</a>
+            {#<form method="post">#}
+                {#<h3>Que recherchez vous ?</h3>#}
+                {#<div class="filtre-ville">#}
+                    {#<label>Filtrer par département:</label>#}
+                    {#<SELECT name="dept" size="1">#}
+                        {#<OPTION value="44">44-Nantes#}
+                        {#<OPTION value="14">14-Caen#}
+                        {#<OPTION value="75">75-Paris#}
+                        {#<OPTION value="80">80-Somme#}
+                        {#<OPTION value="35">35-Rennes#}
+                    {#</SELECT>#}
+                {#</div>#}
+                {#<div class="filtre-prix">#}
+                    {#<label>Filtrer par prix:</label>#}
+                    {#<SELECT name="price" size="1">#}
+                        {#<OPTION value="1">de 30 à 50#}
+                        {#<OPTION value="2">de 50 à 70#}
+                        {#<OPTION value="3">de 70 à 90#}
+                        {#<OPTION value="4">de 90 à 120#}
+                        {#<OPTION value="5">de 120 à +#}
+                    {#</SELECT>#}
+                {#</div>#}
+                {#<div class="search">#}
+                    {#<input class="search" type="search" placeholder="Entrez un mot- clef" name="search">#}
+                {#</div>#}
+                {#<a href="{{ path('home') }}" class="bouton2">Search</a>#}
+            {#</form>#}
+            {{ form_start(searchForm) }}
+            {{ form_widget(searchForm) }}
+            <button class="btn">Rechercher</button>
+            {{ form_end(searchForm) }}
+
         </div>
 
         <!--RESULT-->
         <div class="table">
             <div class="result">
                 {% for table in listTable %}
-                <div class="article">
-                    <h2>{{ table.name }}</h2>
-                    <img src="{{ asset('uploads/table_images/' ~ table.image ) }}" alt="resto" height="280px">
-                    <p>{{ table.description }}
-                    </p>
-                    <a href="{{ path('host_table_show', {'id': table.id}) }}" style="padding : 10px 5px 5px">
-                        <button type="button">Détail</button>
-                    </a>
-                </div>
+                    <div class="article">
+                        <h2>{{ table.name }}</h2>
+                        <img src="{{ asset('uploads/table_images/' ~ table.image ) }}" alt="resto" height="280px">
+                        <p>{{ table.description }}
+                        </p>
+                        <a href="{{ path('host_table_show', {'id': table.id}) }}" style="padding : 10px 5px 5px">
+                            <button type="button">Détail</button>
+                        </a>
+                    </div>
                 {% endfor %}
             </div>
         </div>
