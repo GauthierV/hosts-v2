@@ -34,6 +34,37 @@ class HostTableRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findIndexSearch(array $array)
+    {
+        // Création du builder de request
+        $builder = $this->createQueryBuilder('host_table');
+
+        // Le formulaire renvoi 3 pricerange, selon le price range un prix mini et maxi est défini
+        switch ($array['price']){
+            case 1:
+                $min = 0;
+                $max = 30;
+                break;
+            case 2:
+                $min = 30;
+                $max = 50;
+                break;
+            case 3:
+                $min = 50;
+                $max = 500;
+                break;
+        }
+
+        // On construit une request qui va chercher les table dans les département et dans le pricerange sélectionné
+        // L'expression like demande une string et un % à la fin, on commence donc par "'" pour ouvrir la string et le "%'" sert a mettre le symbole % et fermer la string
+        return
+            $builder
+                ->where($builder->expr()->like('host_table.zipCode', "'".$array['dept'] . "%'"))
+                ->andWhere($builder->expr()->between('host_table.priceRange', $min, $max))
+                ->getQuery()
+                ->getResult();
+    }
+
     // /**
     //  * @return HostTable[] Returns an array of HostTable objects
     //  */
