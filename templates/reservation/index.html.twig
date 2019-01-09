@@ -10,8 +10,8 @@
             <tr>
                 <th>Id</th>
                 <th>Création</th>
-                <th>Table_id</th>
-                <th>User_id</th>
+                <th>Nom de la table</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
@@ -19,8 +19,8 @@
             <tr>
                 <td>{{ reservation.id }}</td>
                 <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ reservation.hostTable.id }}</td>
-                <td>{{ reservation.user.id }}</td>
+                <td>{{ reservation.hostTable.name }}</td>
+                <td>{{ reservation.user.email }}</td>
                 <td>
                     <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
                     <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
