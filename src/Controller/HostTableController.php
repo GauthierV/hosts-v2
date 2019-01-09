@@ -22,7 +22,7 @@ class HostTableController extends AbstractController
      */
     public function index(HostTableRepository $hostTableRepository): Response
     {
-        return $this->render('host_table/index.html.twig', [
+        return $this->render('host_table/admin.html.twig', [
             'host_tables' => $hostTableRepository->findAll(),
         ]);
     }

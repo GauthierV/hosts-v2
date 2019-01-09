@@ -20,7 +20,7 @@ class ReservationController extends AbstractController
      */
     public function index(ReservationRepository $reservationRepository): Response
     {
-        return $this->render('reservation/index.html.twig', [
+        return $this->render('reservation/admin.html.twig', [
             'reservations' => $reservationRepository->findAll(),
         ]);
     }

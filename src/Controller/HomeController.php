@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/home", name="home")
      */
     public function index(HostTableRepository $hostTableRepository)
     {
@@ -17,7 +17,7 @@ class HomeController extends AbstractController
 
         $table = $hostTableRepository->getRandomTable();
 
-        return $this->render('home/index.html.twig', [
+        return $this->render('home/admin.html.twig', [
             'controller_name' => 'Best table',
             'listTable' => $listTable,
             'table' => $table,
