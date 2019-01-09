@@ -7,6 +7,7 @@ use App\Entity\Reservation;
 use App\Form\HostTableType;
 use App\Form\ReservationType;
 use App\Repository\HostTableRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,7 @@ class HostTableController extends AbstractController
 
     /**
      * @Route("/new", name="host_table_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request): Response
     {
@@ -61,6 +63,7 @@ class HostTableController extends AbstractController
      * @param HostTable $hostTable
      * @param TokenInterface $token
      * @return Response
+     *
      */
     public function show(HostTable $hostTable): Response
     {
@@ -83,6 +86,7 @@ class HostTableController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="host_table_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, HostTable $hostTable): Response
     {
@@ -116,6 +120,7 @@ class HostTableController extends AbstractController
 
     /**
      * @Route("/{id}", name="host_table_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, HostTable $hostTable): Response
     {

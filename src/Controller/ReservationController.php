@@ -6,6 +6,7 @@ use App\Entity\HostTable;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -87,6 +88,7 @@ class ReservationController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="reservation_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Reservation $reservation): Response
     {
@@ -109,6 +111,7 @@ class ReservationController extends AbstractController
 
     /**
      * @Route("/{id}", name="reservation_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Reservation $reservation): Response
     {
