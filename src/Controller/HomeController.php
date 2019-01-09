@@ -17,7 +17,7 @@ class HomeController extends AbstractController
 
         $table = $hostTableRepository->getRandomTable();
 
-        return $this->render('home/admin.html.twig', [
+        return $this->render('home/index.html.twig', [
             'controller_name' => 'Best table',
             'listTable' => $listTable,
             'table' => $table,
