@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\HostTable;
+use App\Entity\Reservation;
 use App\Form\HostTableType;
+use App\Form\ReservationType;
 use App\Repository\HostTableRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
@@ -11,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
 /**
  * @Route("/host/table")
@@ -55,11 +58,26 @@ class HostTableController extends AbstractController
 
     /**
      * @Route("/{id}", name="host_table_show", methods={"GET"})
+     * @param HostTable $hostTable
+     * @param TokenInterface $token
+     * @return Response
      */
     public function show(HostTable $hostTable): Response
     {
+        $reservation = new Reservation();
+//        $form = $this->createFormBuilder($reservation, [
+//            'action' => $this->generateUrl('new_reservation', array('id' => $hostTable->getId())),
+//        ])->add('createdAt')
+//            ->getForm();
+
+        $form = $this->createForm(ReservationType::class, $reservation, [
+            'action' => $this->generateUrl('new_reservation', array('id' => $hostTable->getId()) ),
+        ]);
+
+
         return $this->render('host_table/show.html.twig', [
             'host_table' => $hostTable,
+            'form_resa' => $form->createView()
         ]);
     }
 
@@ -68,8 +86,8 @@ class HostTableController extends AbstractController
      */
     public function edit(Request $request, HostTable $hostTable): Response
     {
-        if (!is_null($hostTable->getImage())){
-            $img =new File($this->getParameter('images_table_directory') . '/'. $hostTable->getImage());
+        if (!is_null($hostTable->getImage())) {
+            $img = new File($this->getParameter('images_table_directory') . '/' . $hostTable->getImage());
             $hostTable->setImage($img);
         }
 
@@ -79,7 +97,7 @@ class HostTableController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            if (!is_null($hostTable->getImage())){
+            if (!is_null($hostTable->getImage())) {
                 $hostTable = $this->uploadImage($hostTable);
             }
 
@@ -101,7 +119,7 @@ class HostTableController extends AbstractController
      */
     public function delete(Request $request, HostTable $hostTable): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$hostTable->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $hostTable->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($hostTable);
             $entityManager->flush();
@@ -109,7 +127,7 @@ class HostTableController extends AbstractController
 
         return $this->redirectToRoute('host_table_index');
     }
-    
+
     /**
      * @return string
      */
@@ -125,7 +143,7 @@ class HostTableController extends AbstractController
     {
         $image = $host->getImage();
 
-        $imageName = $this->generateUniqueFileName().'.'.$image->guessExtension();
+        $imageName = $this->generateUniqueFileName() . '.' . $image->guessExtension();
 
         // Move the file to the directory where brochures are stored
         try {

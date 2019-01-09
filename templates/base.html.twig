@@ -44,6 +44,14 @@
             </div>
         </nav>
 
+        <h1>
+        {% for category, messages in app.flashes %}
+            {% for message in messages %}
+                <p class="flash--{{ category }}">{{ message }}</p>
+            {% endfor %}
+        {% endfor %}
+        </h1>
+
         {% block body %}{% endblock %}
 
         <footer class="footer navbar-fixed-bottom">

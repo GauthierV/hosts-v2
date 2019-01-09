@@ -12,13 +12,7 @@ class ReservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdAt')
-            ->add('hostTable', null, [
-                'choice_label' => 'name'
-            ])
-            ->add('user', null, [
-                'choice_label' => 'email'
-            ]);
+            ->add('createdAt');
     }
 
     public function configureOptions(OptionsResolver $resolver)

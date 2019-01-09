@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\HostTable;
 use App\Entity\Reservation;
 use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
@@ -49,6 +50,32 @@ class ReservationController extends AbstractController
     }
 
     /**
+     * @Route("/newResa/{id}", name="new_reservation", methods={"POST"})
+     *
+     */
+    public function newResa(HostTable $hostTable, Request $request): Response
+    {
+        $reservation = new Reservation();
+        $form = $this->createForm(ReservationType::class, $reservation);
+        $reservation->setHostTable($hostTable)->setUser($this->getUser());
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($reservation);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
+        }
+
+        // Si la reservation ne peut pas être créé, redirige vers la page de la table
+        $this->addFlash('warning', 'La reservation n\'a pas été créée.');
+        return $this->redirect($request->headers->get('referer'));
+
+    }
+
+    /**
      * @Route("/{id}", name="reservation_show", methods={"GET"})
      */
     public function show(Reservation $reservation): Response
@@ -85,7 +112,7 @@ class ReservationController extends AbstractController
      */
     public function delete(Request $request, Reservation $reservation): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $reservation->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($reservation);
             $entityManager->flush();
