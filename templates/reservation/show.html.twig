@@ -5,8 +5,8 @@
 {% block body %}
     <div class="container col-md-10 mt-5">
         <h1>Gérer les réservations</h1>
-        <table class="table table-striped">
-            <thead>
+        <table class="table">
+            <thead class="thead-dark">
             <tr>
                 <th>Nom</th>
                 <th>Email</th>
@@ -20,7 +20,7 @@
                 <th>Actions</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="table-secondary">
                 <tr>
                     <td>{{ reservation.hostTable.name }}</td>
                     <td>{{ reservation.user.username }}</td>
@@ -37,7 +37,7 @@
                     </td>
                 </tr>
             <tfoot class="text-left">
-            <a href="{{ path('reservation_index') }}" class="btn btn-primary" >back to list</a>
+            <a href="{{ path('reservation_index') }}" class="btn btn-outline-dark" >Retour</a>
             </tfoot>
             </tbody>
             <tfoot>
