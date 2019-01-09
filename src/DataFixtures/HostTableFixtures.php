@@ -15,15 +15,41 @@ class HostTableFixtures extends Fixture
     {
         $imgname = 'dindemenu.jpg';
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 3; $i++) {
             $table1 = new HostTable();
-            $table1->setName('super table ' . $i);
+            $table1->setName('super table ' . $i . ' de Nantes');
             $table1->setAddress($i+1 . ' mail Pablo Picasso');
             $table1->setDescription('cest super de manger ici il ya trop d\'émotions incroyable');
             $table1->setMenu('entrée de php - plat de git - dessert de js');
-            $table1->setPriceRange(2 * $i);
+            $table1->setPriceRange(20 * ($i+1));
             $table1->setTown('Nantes');
-            $table1->setZipCode(44000);
+            $table1->setZipCode('44000');
+            $table1->setImage($imgname);
+            $manager->persist($table1);
+            $manager->flush();
+        }
+        for ($i = 0; $i < 3; $i++) {
+            $table1 = new HostTable();
+            $table1->setName('super table ' . $i . ' de Rennes');
+            $table1->setAddress($i+1 . ' mrue de la paix');
+            $table1->setDescription('cest super de manger ici il ya trop d\'émotions incroyable');
+            $table1->setMenu('entrée de php - plat de git - dessert de js');
+            $table1->setPriceRange(20 * ($i+1));
+            $table1->setTown('Rennes');
+            $table1->setZipCode('35000');
+            $table1->setImage($imgname);
+            $manager->persist($table1);
+            $manager->flush();
+        }
+        for ($i = 0; $i < 3; $i++) {
+            $table1 = new HostTable();
+            $table1->setName('super table ' . $i . ' de Paris');
+            $table1->setAddress($i+1 . ' mrue de la paix');
+            $table1->setDescription('cest super de manger ici il ya trop d\'émotions incroyable');
+            $table1->setMenu('entrée de php - plat de git - dessert de js');
+            $table1->setPriceRange(20 * ($i+1));
+            $table1->setTown('Paris');
+            $table1->setZipCode('75000');
             $table1->setImage($imgname);
             $manager->persist($table1);
             $manager->flush();
