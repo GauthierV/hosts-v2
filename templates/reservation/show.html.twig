@@ -3,28 +3,50 @@
 {% block title %}Reservation{% endblock %}
 
 {% block body %}
-    <h1>Reservation</h1>
-
-    <table class="table">
-        <tbody>
+    <div class="container col-md-10 mt-5">
+        <h1>Gérer les réservations</h1>
+        <table class="table table-striped">
+            <thead>
             <tr>
-                <th>Id</th>
-                <td>{{ reservation.id }}</td>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Adresse</th>
+                <th>Ville</th>
+                <th>CP</th>
+                <th>Menu</th>
+                <th>Price</th>
+                <th>Actions</th>
             </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>IdTable</th>
-                <td>{{ reservation.idTable }}</td>
-            </tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ reservation.hostTable.name }}</td>
+                    <td>{{ reservation.user.username }}</td>
+                    <td>{{ reservation.createdAt| date('d/m/Y ') }}</td>
+                    <td>{{ reservation.hostTable.description }}</td>
+                    <td>{{ reservation.hostTable.address }}</td>
+                    <td>{{ reservation.hostTable.town }}</td>
+                    <td>{{ reservation.hostTable.zipCode }}</td>
+                    <td>{{ reservation.hostTable.menu }}</td>
+                    <td>{{ reservation.hostTable.priceRange }}</td>
+                    <td>
+                        <a href="{{ path('reservation_edit', {'id': reservation.id}) }}" class="btn btn-primary">edit</a>
+                        {{ include('reservation/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+            <tfoot class="text-left">
+            <a href="{{ path('reservation_index') }}" class="btn btn-primary" >back to list</a>
+            </tfoot>
+            </tbody>
+            <tfoot>
 
-    <a href="{{ path('reservation_index') }}">back to list</a>
+            </tfoot>
+        </table>
 
-    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+    </div>
 
-    {{ include('reservation/_delete_form.html.twig') }}
+
+
 {% endblock %}

@@ -13,9 +13,12 @@ class ReservationType extends AbstractType
     {
         $builder
             ->add('createdAt')
-            ->add('hostTable')
-            ->add('user')
-        ;
+            ->add('hostTable', null, [
+                'choice_label' => 'name'
+            ])
+            ->add('user', null, [
+                'choice_label' => 'email'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
