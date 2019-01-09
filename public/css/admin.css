@@ -42,7 +42,6 @@ h1 {
 .navbar{
   margin: auto;
   display: flex;
-  align-items: center;
   width: 100%;
 }
 
@@ -67,9 +66,32 @@ h3{
   border-collapse: collapse;
   height: 320px;
   margin: auto;
-  max-width: 800px;
   padding:5px;
-  width: 100%;
+  width: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+
+.table-two {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 400px;
+  margin: auto;
+  padding:5px;
+  width: 75%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+
+.table-three {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 400px;
+  margin: auto;
+  padding:5px;
+  width: 75%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   animation: float 5s infinite;
 }
@@ -174,4 +196,3 @@ td.text-right {
   text-align: right;
 }
 
-/* FOOTER */
