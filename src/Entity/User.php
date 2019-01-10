@@ -79,7 +79,7 @@ class User implements UserInterface
 
     public static function getRolesChoices(): array{
 
-        return ['ROLE_USER','ROLE_ADMIN'];
+        return ['ROLE_USER','ROLE_ADMIN','ROLE_HOST'];
     }
 
     public function setRoles(array $roles): self

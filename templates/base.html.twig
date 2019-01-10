@@ -20,9 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             {% if is_granted('ROLE_ADMIN') %}
-            <li class="nav-item {% if mainNavAdmin is defined %}active{% endif %}">
-                <a class="nav-link" href="{{ path('admin') }}">Espace admin</a>
-            <li class="nav-item">
+
                 <a class="nav-link" href="{{ path('user_index') }}">User</a>
             </li>
             <li class="nav-item">
@@ -32,12 +30,18 @@
                 <a class="nav-link" href="{{ path('reservation_index') }}">Réservation</a>
             </li>
         </ul>
+        {% elseif is_granted('ROLE_HOST')  %}
+        <li class="nav-item {% if mainNavAdmin is defined %}active{% endif %}">
+            <a class="nav-link" href="{{ path('admin') }}">Espace host</a>
+        <li class="nav-item">
         {% endif %}
-
         {% if app.user %}
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="{{ path('logout_route') }}" class="nav-link">Se déconnecter</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('user_detail')}}" class="nav-link">Espace user</a>
                 </li>
             </ul>
         {% else %}

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,10 +54,26 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user_show", methods={"GET"})
+     * @Route("/{id}", requirements={"id" = "\d+"} , name="user_show", methods={"GET"})
+     *
      */
     public function show(User $user): Response
     {
+
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+        ]);
+    }
+    /**
+     * @Route("/detail", name="user_detail", methods={"GET"})
+     * @isGranted("IS_AUTHENTICATED_REMEMBERED")
+     */
+    public function detailUser(): Response
+    {
+        $user = new User();
+        $user = $this->getUser();
+        dump($user);
+
         return $this->render('user/show.html.twig', [
             'user' => $user,
         ]);
@@ -64,10 +81,11 @@ class UserController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
+     *
      */
     public function edit(Request $request, User $user): Response
     {
+        $this->denyAccessUnlessGranted('USER_EDIT', $user);
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
