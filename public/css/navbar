@@ -1,0 +1,5 @@
+.navbar{
+  margin: auto;
+  display: flex;
+  width: 100%;
+}

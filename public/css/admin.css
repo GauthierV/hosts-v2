@@ -48,8 +48,15 @@ h1 {
 h4{
   text-align: center;
   font-size: large;
-  font-style: bold;
   margin: 40px;
+  font-weight: bold;
+  color: black;
+}
+
+.fond{
+  background-color: lightgrey;
+  padding: 17px;
+  border-left: 2px solid grey;
 }
 
 /*** Table Styles **/
@@ -57,7 +64,7 @@ h4{
 h3{
   text-align: center;
   letter-spacing: 2px;
-  margin: 10px;
+  margin: 22px;
 }
 
 .table-contener {

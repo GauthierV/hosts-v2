@@ -29,6 +29,20 @@ class HostTableController extends AbstractController
     }
 
     /**
+     * @Route("/admin", name="host_table_find", methods={"GET"})
+     */
+    /*public function findLalest(HostTableRepository $TableShow)
+    {
+        $tables = $TableShow->findLatest();
+
+        return $this->render( 'baseadmin.html.twig', [
+            'tables'=>$tables,
+        ]);
+    }*/
+
+        //return $this->render('article/index.html.twig', [
+
+    /**
      * @Route("/new", name="host_table_new", methods={"GET","POST"})
      * @IsGranted("ROLE_ADMIN")
      */

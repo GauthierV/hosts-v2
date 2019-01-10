@@ -26,6 +26,15 @@ class UserController extends AbstractController
         ]);
     }
 
+   /* public function findLimit(UserRepository $UserShow)
+    {
+        $user = $UserShow->findLatest();
+
+        return $this->render( 'baseadmin.html.twig', [
+            'users'=>$user,
+        ]);
+    }*/
+
     /**
      * @Route("/new", name="user_new", methods={"GET","POST"})
      */

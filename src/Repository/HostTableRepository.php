@@ -34,6 +34,7 @@ class HostTableRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
     public function findIndexSearch(array $array)
     {
         // Création du builder de request
