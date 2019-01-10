@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\SearchFormType;
 use App\Repository\HostTableRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,6 +16,7 @@ class HomeController extends AbstractController
      */
     public function index(HostTableRepository $hostTableRepository, Request $request)
     {
+
         // Création d'un formulaire de recherche
         $searchForm = $this->createForm(SearchFormType::class);
         // Gestion de la request
@@ -31,7 +33,8 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'controller_name' => 'Best table',
             'listTable' => $listTable,
-            'searchForm' => $searchForm->createView()
+            'searchForm' => $searchForm->createView(),
+
         ]);
     }
 }

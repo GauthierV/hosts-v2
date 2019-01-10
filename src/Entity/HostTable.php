@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,12 +47,7 @@ class HostTable
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $menu;
-
+    
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -60,6 +57,16 @@ class HostTable
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Meal", mappedBy="hostTable")
+     */
+    private $meals;
+
+    public function __construct()
+    {
+        $this->meals = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,19 +144,7 @@ class HostTable
 
         return $this;
     }
-
-    public function getMenu(): ?string
-    {
-        return $this->menu;
-    }
-
-    public function setMenu(?string $menu): self
-    {
-        $this->menu = $menu;
-
-        return $this;
-    }
-
+    
     public function getPriceRange(): ?int
     {
         return $this->priceRange;
@@ -170,6 +165,37 @@ class HostTable
     public function setImage($image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Meal[]
+     */
+    public function getMeals(): Collection
+    {
+        return $this->meals;
+    }
+
+    public function addMeal(Meal $meal): self
+    {
+        if (!$this->meals->contains($meal)) {
+            $this->meals[] = $meal;
+            $meal->setHostTable($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMeal(Meal $meal): self
+    {
+        if ($this->meals->contains($meal)) {
+            $this->meals->removeElement($meal);
+            // set the owning side to null (unless already changed)
+            if ($meal->getHostTable() === $this) {
+                $meal->setHostTable(null);
+            }
+        }
 
         return $this;
     }

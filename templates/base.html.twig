@@ -19,10 +19,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-                {% if is_granted('ROLE_ADMIN') %}
-            <li class="nav-item {% if mainNavAdmin is defined %}active{% endif %}">
-                <a class="nav-link" href="{{ path('admin') }}">Espace admin</a>
-            <li class="nav-item">
+            {% if is_granted('ROLE_ADMIN') %}
+
                 <a class="nav-link" href="{{ path('user_index') }}">User</a>
             </li>
             <li class="nav-item">
@@ -32,19 +30,24 @@
                 <a class="nav-link" href="{{ path('reservation_index') }}">Réservation</a>
             </li>
         </ul>
-            {% endif %}
-
+        {% elseif is_granted('ROLE_HOST')  %}
+        <li class="nav-item {% if mainNavAdmin is defined %}active{% endif %}">
+            <a class="nav-link" href="{{ path('admin') }}">Espace host</a>
+        <li class="nav-item">
+        {% endif %}
         {% if app.user %}
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="{{ path('logout_route') }}" class="nav-link">Se déconnecter</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('user_detail')}}" class="nav-link">Espace user</a>
                 </li>
             </ul>
         {% else %}
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="{{ path('app_login') }}" class="nav-link">Se Connecter</a>
-
                 </li>
                 <li>
                     <a href="{{ path('user_new') }}" class="nav-link">S'inscrire</a>
@@ -54,10 +57,17 @@
     </div>
 </nav>
 
+
+<h1>
+    {% for category, messages in app.flashes %}
+        {% for message in messages %}
+            <p class="flash--{{ category }}">{{ message }}</p>
+        {% endfor %}
+    {% endfor %}
+</h1>
+
 {% block body %}{% endblock %}
-
 <footer class="footer navbar-fixed-bottom">
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

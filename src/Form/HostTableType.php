@@ -19,7 +19,6 @@ class HostTableType extends AbstractType
             ->add('town')
             ->add('zipCode')
             ->add('description')
-            ->add('menu')
             ->add('priceRange')
             ->add('image', FileType::class, array('label' => 'Image (JPG file)', 'required' => false))
         ;

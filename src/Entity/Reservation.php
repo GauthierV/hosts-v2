@@ -22,16 +22,20 @@ class Reservation
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\HostTable")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $hostTable;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Meal", inversedBy="reservations")
+     */
+    private $meal;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $guestNumber;
 
     public function getId(): ?int
     {
@@ -50,18 +54,6 @@ class Reservation
         return $this;
     }
 
-    public function getHostTable(): ?HostTable
-    {
-        return $this->hostTable;
-    }
-
-    public function setHostTable(?HostTable $hostTable): self
-    {
-        $this->hostTable = $hostTable;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -70,6 +62,30 @@ class Reservation
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getMeal(): ?Meal
+    {
+        return $this->meal;
+    }
+
+    public function setMeal(?Meal $meal): self
+    {
+        $this->meal = $meal;
+
+        return $this;
+    }
+
+    public function getGuestNumber(): ?int
+    {
+        return $this->guestNumber;
+    }
+
+    public function setGuestNumber(int $guestNumber): self
+    {
+        $this->guestNumber = $guestNumber;
 
         return $this;
     }
