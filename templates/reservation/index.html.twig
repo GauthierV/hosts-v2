@@ -25,7 +25,7 @@
             <tr>
                 <td>{{ reservation.id }}</td>
                 <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ reservation.hostTable.name }}</td>
+                <td>{{ reservation.meal.hostTable.name }}</td>
                 <td>{{ reservation.user.email }}</td>
                 <td>
                     <a href="{{ path('reservation_show', {'id': reservation.id}) }}" class="btn btn-info">show</a>

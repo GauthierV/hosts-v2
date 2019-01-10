@@ -34,12 +34,6 @@ class Meal
     private $capacity;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="meals")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $host;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $remainingCapacity;
@@ -48,6 +42,16 @@ class Meal
      * @ORM\OneToMany(targetEntity="App\Entity\Reservation", mappedBy="meal")
      */
     private $reservations;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\HostTable", inversedBy="meals")
+     */
+    private $hostTable;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $menu;
 
     public function __construct()
     {
@@ -95,18 +99,6 @@ class Meal
         return $this;
     }
 
-    public function getHost(): ?User
-    {
-        return $this->host;
-    }
-
-    public function setHost(?User $host): self
-    {
-        $this->host = $host;
-
-        return $this;
-    }
-
     public function getRemainingCapacity(): ?int
     {
         return $this->remainingCapacity;
@@ -146,6 +138,30 @@ class Meal
                 $reservation->setMeal(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getHostTable(): ?HostTable
+    {
+        return $this->hostTable;
+    }
+
+    public function setHostTable(?HostTable $hostTable): self
+    {
+        $this->hostTable = $hostTable;
+
+        return $this;
+    }
+
+    public function getMenu(): ?string
+    {
+        return $this->menu;
+    }
+
+    public function setMenu(string $menu): self
+    {
+        $this->menu = $menu;
 
         return $this;
     }

@@ -12,12 +12,15 @@ class MealType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+
             ->add('date')
+            ->add('hostTable', null, [
+                'choice_label' => 'name'])
             ->add('price')
+            ->add('menu')
             ->add('capacity')
             ->add('remainingCapacity')
-            ->add('host', null, [
-                'choice_label' => 'email'])
+
         ;
     }
 
