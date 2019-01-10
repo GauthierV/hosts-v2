@@ -20,6 +20,7 @@ class HostTableController extends AbstractController
 {
     /**
      * @Route("/", name="host_table_index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(HostTableRepository $hostTableRepository): Response
     {
