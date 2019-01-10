@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\HostTable;
+use App\Entity\Meal;
 use App\Entity\Reservation;
+use App\Form\ReservationInMealType;
+use App\Form\ReservationInTableType;
 use App\Form\ReservationType;
+use App\Repository\MealRepository;
 use App\Repository\ReservationRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -52,16 +56,44 @@ class ReservationController extends AbstractController
     }
 
     /**
-     * @Route("/newResa/{id}", name="new_reservation", methods={"POST"})
+     * @Route("/newResa", name="new_reservation", methods={"POST"})
      *
      */
-    public function newResa(HostTable $hostTable, Request $request): Response
+    public function newResa(Request $request, MealRepository $mealRepository): Response
+    {
+//        dump($request->request);
+
+//        $meal = $mealRepository->find($request->request['reservation']['meal']);
+
+        $reservation = new Reservation();
+        $form = $this->createForm(ReservationInTableType::class, $reservation);
+        $form->handleRequest($request);
+
+        $reservation->setUser($this->getUser());
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($reservation);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
+        }
+
+        // Si la reservation ne peut pas être créé, redirige vers la page de la table
+        $this->addFlash('warning', 'La reservation n\'a pas été créée.');
+        return $this->redirect($request->headers->get('referer'));
+
+    }
+    /**
+     * @Route("/resaMeal/{id}", name="reservation_meal", methods={"POST"})
+     *
+     */
+    public function resaMeal(Meal $meal, Request $request, MealRepository $mealRepository): Response
     {
         $reservation = new Reservation();
-        $form = $this->createForm(ReservationType::class, $reservation);
-        $reservation->setHostTable($hostTable)->setUser($this->getUser());
-
+        $form = $this->createForm(ReservationInMealType::class, $reservation);  
         $form->handleRequest($request);
+        $reservation->setUser($this->getUser())->setMeal($meal);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();

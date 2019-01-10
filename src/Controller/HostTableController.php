@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\HostTable;
 use App\Entity\Reservation;
 use App\Form\HostTableType;
+use App\Form\ReservationInTableType;
 use App\Form\ReservationType;
 use App\Repository\HostTableRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -69,13 +70,9 @@ class HostTableController extends AbstractController
     public function show(HostTable $hostTable): Response
     {
         $reservation = new Reservation();
-//        $form = $this->createFormBuilder($reservation, [
-//            'action' => $this->generateUrl('new_reservation', array('id' => $hostTable->getId())),
-//        ])->add('createdAt')
-//            ->getForm();
 
-        $form = $this->createForm(ReservationType::class, $reservation, [
-            'action' => $this->generateUrl('new_reservation', array('id' => $hostTable->getId()) ),
+        $form = $this->createForm(ReservationInTableType::class, $reservation, [
+            'action' => $this->generateUrl('new_reservation'),
         ]);
 
 

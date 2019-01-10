@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Reservation
 {
@@ -36,6 +37,14 @@ class Reservation
      * @ORM\Column(type="integer")
      */
     private $guestNumber;
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function createDate()
+    {
+        $this->setCreatedAt(new \DateTime());
+    }
 
     public function getId(): ?int
     {
