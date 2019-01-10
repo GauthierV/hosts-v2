@@ -1,0 +1,19 @@
+h1{
+    text-align: center;
+    margin: 70px;
+}
+
+.form-control{
+    height: 40px;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    margin: 25px;
+    text-align: center;
+}
+
+.body{
+    display: flex;
+    width: 100%;
+    background-image: grey;
+}
