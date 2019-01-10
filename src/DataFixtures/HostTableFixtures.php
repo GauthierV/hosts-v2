@@ -15,7 +15,7 @@ class HostTableFixtures extends Fixture
     {
         $imgname = 'dindemenu.jpg';
 
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $table1 = new HostTable();
             $table1->setName('super table ' . $i . ' de Nantes');
             $table1->setAddress($i+1 . ' mail Pablo Picasso');
@@ -25,9 +25,10 @@ class HostTableFixtures extends Fixture
             $table1->setZipCode('44000');
             $table1->setImage($imgname);
             $manager->persist($table1);
+            $this->addReference('host-nantes', $table1);
             $manager->flush();
         }
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $table1 = new HostTable();
             $table1->setName('super table ' . $i . ' de Rennes');
             $table1->setAddress($i+1 . ' mrue de la paix');
@@ -37,9 +38,10 @@ class HostTableFixtures extends Fixture
             $table1->setZipCode('35000');
             $table1->setImage($imgname);
             $manager->persist($table1);
+            $this->addReference('host-rennes', $table1);
             $manager->flush();
         }
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 1; $i++) {
             $table1 = new HostTable();
             $table1->setName('super table ' . $i . ' de Paris');
             $table1->setAddress($i+1 . ' mrue de la paix');
@@ -49,8 +51,8 @@ class HostTableFixtures extends Fixture
             $table1->setZipCode('75000');
             $table1->setImage($imgname);
             $manager->persist($table1);
+            $this->addReference('host-paris', $table1);
             $manager->flush();
         }
-
     }
 }
