@@ -75,7 +75,7 @@ class UserController extends AbstractController
         ]);
     }
     /**
-     * @Route("/detail", name="user_detail", methods={"GET"})
+     * @Route("/detail_user", name="user_detail", methods={"GET"})
      * @isGranted("IS_AUTHENTICATED_REMEMBERED")
      */
     public function detailUser(): Response
@@ -90,12 +90,30 @@ class UserController extends AbstractController
     }
 
     /**
+     * @Route("/detail_host", name="host_detail", methods={"GET"})
+     * @isGranted("IS_AUTHENTICATED_REMEMBERED")
+     */
+    public function detailHost(): Response
+    {
+        $user = new User();
+        $user = $this->getUser();
+        dump($user);
+
+        return $this->render('user/show.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
+     *
      *
      */
     public function edit(Request $request, User $user): Response
     {
+
         $this->denyAccessUnlessGranted('USER_EDIT', $user);
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
