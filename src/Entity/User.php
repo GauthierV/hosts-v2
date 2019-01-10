@@ -2,8 +2,7 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -36,14 +35,9 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $telephone;
-
-
-    public function __construct()
-    {
-    }
 
     public function getId(): ?int
     {
@@ -69,7 +63,7 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string)$this->email;
+        return (string) $this->email;
     }
 
     /**
@@ -84,10 +78,9 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
-    public static function getRolesChoices(): array
-    {
+    public static function getRolesChoices(): array{
 
-        return ['ROLE_USER', 'ROLE_ADMIN'];
+        return ['ROLE_USER','ROLE_ADMIN','ROLE_HOST'];
     }
 
     public function setRoles(array $roles): self
@@ -102,7 +95,7 @@ class User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string)$this->password;
+        return (string) $this->password;
     }
 
     public function setPassword(string $password): self
@@ -129,12 +122,12 @@ class User implements UserInterface
         // $this->plainPassword = null;
     }
 
-    public function getTelephone(): ?int
+    public function getTelephone(): ?string
     {
         return $this->telephone;
     }
 
-    public function setTelephone(int $telephone): self
+    public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
 

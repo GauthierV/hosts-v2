@@ -31,6 +31,15 @@ class ReservationController extends AbstractController
         ]);
     }
 
+    /*public function findLatest(UserRepository $UserShow)
+    {
+        $user = $UserShow->findLatest();
+
+        return $this->render( 'baseadmin.html.twig', [
+            'users'=>$user,
+        ]);
+    }*/
+
     /**
      * @Route("/new", name="reservation_new", methods={"GET","POST"})
      */

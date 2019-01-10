@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Form\SearchFormType;
 use App\Repository\HostTableRepository;
 use App\Repository\MealRepository;
@@ -16,6 +17,7 @@ class HomeController extends AbstractController
      */
     public function index(HostTableRepository $hostTableRepository, MealRepository $mealRepository, Request $request)
     {
+
         // Création d'un formulaire de recherche
         $searchForm = $this->createForm(SearchFormType::class);
         // Gestion de la request
