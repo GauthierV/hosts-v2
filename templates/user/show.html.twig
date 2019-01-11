@@ -18,6 +18,7 @@
                </thead>
                 <tbody class="table-secondary">
                 <tr>
+
                     <td>{{ user.Email }}</td>
                     <td>{{ user.Telephone }}</td>
                     <td>{{ user.Password }}</td>
@@ -32,7 +33,6 @@
             <table class="table mt-5">
                 <thead class="thead-dark">
                 <tr>
-                    <th>Id</th>
                     <th>Création</th>
                     <th>Nom de la table</th>
                     <th>Email</th>
@@ -42,7 +42,6 @@
                 <tbody class="table-secondary">
                 {% for reservation in reservations %}
                     <tr>
-                        <td>{{ reservation.id }}</td>
                         <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                         <td>{{ reservation.meal.hostTable.name }}</td>
                         <td>{{ reservation.user.email }}</td>
@@ -59,4 +58,37 @@
                 </tbody>
             </table>
         </div>
+    {% if is_granted('ROLE_HOST') %}
+    <div class="container col-md-8 mt-5">
+        <h2 class="text-center">Liste de vos Table</h2>
+        <table class="table mt-5">
+            <thead class="thead-dark">
+            <tr>
+                <th>Création</th>
+                <th>Nom de la table</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody class="table-secondary">
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ table.description }}</td>
+                    <td>{{ reservation.createdAt ? reservation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ reservation.meal.hostTable.name }}</td>
+                    <td>{{ reservation.user.email }}</td>
+                    <td>
+                        <a href="{{ path('reservation_show', {'id': reservation.id}) }}" class="btn btn-info">show</a>
+                        <a href="{{ path('reservation_edit', {'id': reservation.id}) }}" class="btn btn-primary">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
 {% endblock %}

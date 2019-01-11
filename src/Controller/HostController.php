@@ -3,17 +3,12 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Form\UserType;
+
 use App\Repository\MealRepository;
-use App\Repository\UserRepository;
-use phpDocumentor\Reflection\DocBlock\Tags\Uses;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use App\Repository\TableRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * @Route("/hostSpace")
@@ -21,13 +16,19 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class HostController extends AbstractController
 {
     /**
-     * @Route("/", name="host_space", methods={"GET"})
-     * @isGranted("ROLE_HOST")
+     * @Route("/detail_host", name="host_detail", methods={"GET"})
+     *
      */
-   /* public function index(): Response
-    {
-        return $this->render('user/index.html.twig', [
-            'listResa' => $mealRepository->findUserMeal(),
-        ]);
-    }*/
+       public function tableHost(TableRepository $tableRepository, MealRepository $mealRepository): Response
+       {
+           $user = $this->getUser();
+           $table = $tableRepository->findBy(['user' => $user]);
+           $meal = $mealRepository->findBy(['user' => $user]);
+
+           return $this->render('user/show.html.twig', [
+               'user' => $user,
+               'table' => $table,
+               'meal' => $meal,
+           ]);
+       }
 }

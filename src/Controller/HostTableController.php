@@ -41,7 +41,7 @@ class HostTableController extends AbstractController
         $hostTable = new HostTable();
         $form = $this->createForm(HostTableType::class, $hostTable);
         $form->handleRequest($request);
-
+if ($this->isGranted())
         if ($form->isSubmitted() && $form->isValid()) {
 
             $hostTable = $this->uploadImage($hostTable);

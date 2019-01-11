@@ -92,8 +92,9 @@ class UserController extends AbstractController
     public function detailUser(ReservationRepository $reservationRepository): Response
     {
         $user = $this->getUser();
+        dump($user);
         $resa= $reservationRepository->findBy(['user' => $user]);
-
+        dump($resa);
         return $this->render('user/show.html.twig', [
             'user' => $user,
             'reservations' => $resa,
@@ -101,26 +102,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/detail_host", name="host_detail", methods={"GET"})
-     * @isGranted("IS_AUTHENTICATED_REMEMBERED")
-     */
- /*   public function detailHost(MealRepository $mealRepository): Response
-    {
-        $user = new User();
-        $user = $this->getUser();
-        $meal = $mealRepository->findUserMeal($user);
-
-        return $this->render('user/show.html.twig', [
-            'user' => $user,
-            'meal' => $meal
-        ]);
-    }*/
-
-
-
-    /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})
-     *
      *
      */
     public function edit(Request $request, User $user): Response

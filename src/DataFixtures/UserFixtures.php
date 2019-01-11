@@ -36,14 +36,15 @@ class UserFixtures extends Fixture
         $trump = new User();
         $trump->setPassword($this->encoder->encodePassword($trump, 'trump'));
         $trump->setEmail('trump@trump.com');
-        $trump->setTelephone(0202020202);
+        $trump->setTelephone(020204747472);
         $trump->setRoles(['ROLE_ADMIN']);
         $manager->persist($trump);
 
         $validmir = new User();
-        $validmir->setPassword($this->encoder->encodePassword($validmir, 'vladimir'));
-        $validmir->setEmail('vladimir@vladimir.com');
+        $validmir->setPassword($this->encoder->encodePassword($validmir, 'poutine'));
+        $validmir->setEmail('poutine@poutine.com');
         $validmir->setTelephone(0303030303);
+        $validmir->setRoles(['ROLE_HOST']);
         $manager->persist($validmir);
 
         $kim = new User();
