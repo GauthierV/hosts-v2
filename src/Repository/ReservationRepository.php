@@ -27,17 +27,6 @@ class ReservationRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findUserReservation()
-    {
-        $builder = $this->createQueryBuilder('reservation');
-        return
-            $builder
-                ->join('reservation.user',  'user')
-                ->join('reservation.meal', 'meal')
-                ->getQuery()
-                ->getResult();
-    }
-
     // /**
     //  * @return Reservation[] Returns an array of Reservation objects
     //  */

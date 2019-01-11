@@ -91,9 +91,8 @@ class UserController extends AbstractController
      */
     public function detailUser(ReservationRepository $reservationRepository): Response
     {
-        $user = new User();
         $user = $this->getUser();
-        $resa= $reservationRepository->findUserReservation();
+        $resa= $reservationRepository->findBy(['user' => $user]);
 
         return $this->render('user/show.html.twig', [
             'user' => $user,
