@@ -53,6 +53,11 @@ class Meal
      */
     private $menu;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -162,6 +167,18 @@ class Meal
     public function setMenu(string $menu): self
     {
         $this->menu = $menu;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
