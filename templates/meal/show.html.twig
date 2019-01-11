@@ -52,6 +52,7 @@
                     <p>Le {{ meal.date | date ("m/d/Y")}} à {{ meal.date | date ("H")}}h</p>
                     <h5>Prix</h5>
                     <p>{{ meal.price }}</p>
+                    <p>Places total : {{ meal.capacity }} / Places restantes : {{ meal.remainingCapacity }}</p>
                 </div>
                 <div class="card-footer">
                     {{ form_start(form_resa) }}

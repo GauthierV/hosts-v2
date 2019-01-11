@@ -1,6 +1,7 @@
 h1{
     text-align: center;
     margin: 70px;
+    color: #2d3143;
 }
 
 .form-control{
@@ -10,24 +11,26 @@ h1{
     align-items: center;
     margin: auto;
     text-align: center;
+    background-color: #545b62;
 }
 
 .body{
     display: flex;
-    width: 100%;
     background-image: grey;
+    width: 100%;
 }
 
 form{
     outline: 0;
-    background: #f2f2f2;
-    width: 40%;
-    border: 0;
+    background: linear-gradient(darkgrey, white);
+    width: 30%;
     margin: auto;
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
-    height: 300px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
 }
 
 .btn{
@@ -38,7 +41,6 @@ form{
     width: 40%;
     border: 0;
     padding: 15px;
-    color: #FFFFFF;
     font-size: 14px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
