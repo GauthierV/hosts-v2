@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
 
     {% block stylesheets %}
-      <link rel="stylesheet" href="{{ asset('css/footer.css') }}" />
     {% endblock %}
 
 
@@ -32,22 +32,16 @@
 
   {% block body %}{% endblock %}
 
-  <footer class="footer navbar-fixed-bottom">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <footer>
       <div class="container">
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav d-flex justify-content-around nav-footer">
-            <a class="nav-item nav-link" href="/source/contact.html">Contact</a>
-            <a class="nav-item nav-link" href="#">Equipe</a>
-            <a class="nav-item nav-link" href="#">Service</a>
-            <a class="nav-item nav-link" href="#">
-              <img src="{{ asset('images/facebook.jpg') }}" alt="logo" height="30px">
-            </a>
-          </div>
+        <div class="justify-content">
+          <a class="link" href="/source/contact.html">Contact</a>
+          <a class="link" href="#">Equipe</a>
+          <a class="link" href="#">Service</a>
+          <img src="{{ asset('images/facebook.jpg') }}" alt="logo" height="30px">
+          </a>
         </div>
       </div>
-    </nav>
   </footer>
 
 

@@ -4,18 +4,15 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-sb-admin/blob/master/LICENSE)
  */
 
-/* PAGE */
-.page{
-  display:flex;
-  flex-wrap:wrap;
-  font-size:100%;
+/* pour fixer le footer (à mettre dans les fichiers racines*/
+
+html{
+position: relative;
+min-height: 100%;
 }
 
-/* BODY */
-.body{
-  display: flex;
-  width: 100%;
-  background-image: grey;
+body {
+  margin: 0 0 60px; /* l'ensemble doit être le même que la taille du footer */
 }
 
 /* HEADER */
