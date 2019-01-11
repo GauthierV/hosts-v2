@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Meal;
+use App\Entity\Reservation;
 use App\Form\MealType;
+use App\Form\ReservationInMealType;
+use App\Form\ReservationInTableType;
 use App\Repository\MealRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,8 +56,14 @@ class MealController extends AbstractController
      */
     public function show(Meal $meal): Response
     {
+        $reservation = new Reservation();
+
+        $form = $this->createForm(ReservationInMealType::class, $reservation, [
+            'action' => $this->generateUrl('reservation_meal', array('id' => $meal->getId())),
+        ]);
         return $this->render('meal/show.html.twig', [
             'meal' => $meal,
+            'form_resa' => $form->createView()
         ]);
     }
 

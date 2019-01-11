@@ -64,13 +64,27 @@
         <!--RESULT-->
         <div class="table">
             <div class="result">
-                {% for table in listTable %}
+                {#{% for table in listTable %}#}
+                    {#<div class="article">#}
+                        {#<h2>{{ table.name }}</h2>#}
+                        {#<img src="{{ asset('uploads/table_images/' ~ table.image ) }}" alt="resto" height="280px">#}
+                        {#<p>{{ table.description }}#}
+                        {#</p>#}
+                        {#<a href="{{ path('host_table_show', {'id': table.id}) }}" style="padding : 10px 5px 5px">#}
+                            {#<button type="button">Détail</button>#}
+                        {#</a>#}
+                    {#</div>#}
+                {#{% endfor %}#}
+                {% for meal in listMeal %}
                     <div class="article">
-                        <h2>{{ table.name }}</h2>
-                        <img src="{{ asset('uploads/table_images/' ~ table.image ) }}" alt="resto" height="280px">
-                        <p>{{ table.description }}
-                        </p>
-                        <a href="{{ path('host_table_show', {'id': table.id}) }}" style="padding : 10px 5px 5px">
+                        <h2>{{ meal.hostTable.name }}</h2>
+                        <img src="{{ asset('uploads/table_images/' ~ meal.hostTable.image ) }}" alt="resto" height="280px">
+                        <p>{{ meal.hostTable.description }}</p>
+                        <p>Menu : </p>
+                        <p>{{ meal.menu }}</p>
+                        <p>Date : </p>
+                        <p>Le {{ meal.date | date ("m/d/Y")}} à {{ meal.date | date ("H")}}h</p>
+                        <a href="{{ path('meal_show', {'id': meal.id}) }}" style="padding : 10px 5px 5px">
                             <button type="button">Détail</button>
                         </a>
                     </div>

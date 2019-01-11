@@ -5,10 +5,10 @@ h1{
 
 .form-control{
     height: 40px;
-    width: 20%;
+    width: 40%;
     display: flex;
     align-items: center;
-    margin: 25px;
+    margin: auto;
     text-align: center;
 }
 
@@ -17,3 +17,32 @@ h1{
     width: 100%;
     background-image: grey;
 }
+
+form{
+    outline: 0;
+    background: #f2f2f2;
+    width: 40%;
+    border: 0;
+    margin: auto;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    height: 300px;
+}
+
+.btn{
+    margin: auto;
+    text-transform: uppercase;
+    outline: 0;
+    background: dimgrey;
+    width: 40%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    text-align: center;
+}
+
