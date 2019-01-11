@@ -77,9 +77,9 @@
                 {#{% endfor %}#}
                 {% for meal in listMeal %}
                     <div class="article">
-                        <h2>{{ meal.hostTable.name }}</h2>
+                        <h2>{{ meal.name }}</h2>
                         <img src="{{ asset('uploads/table_images/' ~ meal.hostTable.image ) }}" alt="resto" height="280px">
-                        <p>{{ meal.hostTable.description }}</p>
+                        <p>Lieu : {{ meal.hostTable.name }}</p>
                         <p>Menu : </p>
                         <p>{{ meal.menu }}</p>
                         <p>Date : </p>

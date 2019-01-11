@@ -40,13 +40,14 @@
 
     <div class="container detail-table">
         <div class="card">
-            <h1 class="text-center card-header" id="tableName">{{ meal.hostTable.name }}</h1>
+            <h1 class="text-center card-header" id="tableName">{{ meal.name }}</h1>
             <div class="row card-body">
                 <img src="{{ asset('uploads/table_images/' ~ meal.hostTable.image ) }}" class="col-md-4">
                 <div class="col-md-8">
-                    <h2 id="title">Description : </h2>
+                    <h2 id="title">Lieu : {{ meal.hostTable.name }}</h2>
+                    <h3>Description du lieu : </h3>
                     <p>{{ meal.hostTable.description }}</p>
-                    <h5>Menu</h5>
+                    <h5>Menu :</h5>
                     <p>{{ meal.menu }}</p>
                     <h5>Date</h5>
                     <p>Le {{ meal.date | date ("m/d/Y")}} à {{ meal.date | date ("H")}}h</p>

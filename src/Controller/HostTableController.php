@@ -68,16 +68,11 @@ if ($this->isGranted())
      */
     public function show(HostTable $hostTable): Response
     {
-        $reservation = new Reservation();
-
-        $form = $this->createForm(ReservationInTableType::class, $reservation, [
-            'action' => $this->generateUrl('new_reservation'),
-        ]);
-
-
+        $meals = $hostTable->getMeals();    
+        dump($meals);
         return $this->render('host_table/show.html.twig', [
             'host_table' => $hostTable,
-            'form_resa' => $form->createView()
+            'meals' => $meals
         ]);
     }
 
