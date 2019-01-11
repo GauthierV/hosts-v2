@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\MealRepository;
+use App\Repository\ReservationRepository;
 use App\Repository\UserRepository;
 use phpDocumentor\Reflection\DocBlock\Tags\Uses;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -87,14 +89,15 @@ class UserController extends AbstractController
      * @Route("/detail_user", name="user_detail", methods={"GET"})
      * @isGranted("IS_AUTHENTICATED_REMEMBERED")
      */
-    public function detailUser(): Response
+    public function detailUser(ReservationRepository $reservationRepository): Response
     {
         $user = new User();
         $user = $this->getUser();
-        dump($user);
+        $resa= $reservationRepository->findUserReservation();
 
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'reservations' => $resa,
         ]);
     }
 
@@ -102,16 +105,19 @@ class UserController extends AbstractController
      * @Route("/detail_host", name="host_detail", methods={"GET"})
      * @isGranted("IS_AUTHENTICATED_REMEMBERED")
      */
-    public function detailHost(): Response
+ /*   public function detailHost(MealRepository $mealRepository): Response
     {
         $user = new User();
         $user = $this->getUser();
-        dump($user);
+        $meal = $mealRepository->findUserMeal($user);
 
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'meal' => $meal
         ]);
-    }
+    }*/
+
+
 
     /**
      * @Route("/{id}/edit", name="user_edit", methods={"GET","POST"})

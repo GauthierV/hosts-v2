@@ -59,11 +59,22 @@ class MealRepository extends ServiceEntityRepository
                 ->getResult();
     }
 
+    public function findUserMeal($idUser)
+    {
+        $builder = $this->createQueryBuilder('meal');
 
+        return
+            $builder
+            ->join('meal.reservations', 'reservations')
+            ->join('reservations.user',  'user')
+            ->where('user.id ='.$idUser)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Meal[] Returns an array of Meal objects
     //  */
-    /*
+    /*$builder->$builder->
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('m')
