@@ -10,6 +10,7 @@ use App\Form\ReservationInTableType;
 use App\Form\ReservationType;
 use App\Repository\MealRepository;
 use App\Repository\ReservationRepository;
+use App\Services\ReservationChecker;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -93,29 +94,29 @@ class ReservationController extends AbstractController
         return $this->redirect($request->headers->get('referer'));
 
     }
+
     /**
      * @Route("/resaMeal/{id}", name="reservation_meal", methods={"POST"})
      *
      */
-    public function resaMeal(Meal $meal, Request $request, MealRepository $mealRepository): Response
+    public function resaMeal(Meal $meal, Request $request, MealRepository $mealRepository, ReservationChecker $checker): Response
     {
         $reservation = new Reservation();
-        $form = $this->createForm(ReservationInMealType::class, $reservation);  
+        $form = $this->createForm(ReservationInMealType::class, $reservation);
         $form->handleRequest($request);
         $reservation->setUser($this->getUser())->setMeal($meal);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($reservation);
-            $entityManager->flush();
+        $isCapacityOk = $checker->checkIfCapacityOk($meal, $reservation);
 
-            return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
+        if ($form->isSubmitted() && $form->isValid() && $isCapacityOk) {
+            $meal->setRemainingCapacity($meal->getRemainingCapacity() - $reservation->getGuestNumber());
+            $reservationId = $this->flushReservation($reservation);
+            return $this->redirectToRoute('reservation_show', array('id' => $reservationId));
         }
 
         // Si la reservation ne peut pas être créé, redirige vers la page de la table
-        $this->addFlash('warning', 'La reservation n\'a pas été créée.');
+        $this->addFlash('warning', $checker->getErrorMessage($meal, $reservation));
         return $this->redirect($request->headers->get('referer'));
-
     }
 
     /**
@@ -162,7 +163,14 @@ class ReservationController extends AbstractController
             $entityManager->remove($reservation);
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('reservation_index');
+    }
+
+    public function flushReservation(Reservation $reservation)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($reservation);
+        $entityManager->flush();
+        return $reservation->getId();
     }
 }

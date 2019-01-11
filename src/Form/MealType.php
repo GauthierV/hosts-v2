@@ -19,8 +19,6 @@ class MealType extends AbstractType
             ->add('price')
             ->add('menu')
             ->add('capacity')
-            ->add('remainingCapacity')
-
         ;
     }
 
