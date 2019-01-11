@@ -30,6 +30,7 @@ class UserFixtures extends Fixture
         $macron->setPassword($this->encoder->encodePassword($macron, 'macron'));
         $macron->setEmail('macron@macron.com');
         $macron->setTelephone(0606060606);
+        $macron->setRoles(['ROLE_HOST']);
         $manager->persist($macron);
 
         $trump = new User();
