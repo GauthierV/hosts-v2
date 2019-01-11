@@ -81,7 +81,7 @@ class HostTableController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="host_table_edit", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_HOST")
      */
     public function edit(Request $request, HostTable $hostTable): Response
     {

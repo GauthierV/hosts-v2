@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\HostTableRepository;
 use App\Repository\MealRepository;
 use App\Repository\ReservationRepository;
 use App\Repository\UserRepository;
@@ -89,15 +90,18 @@ class UserController extends AbstractController
      * @Route("/detail_user", name="user_detail", methods={"GET"})
      * @isGranted("IS_AUTHENTICATED_REMEMBERED")
      */
-    public function detailUser(ReservationRepository $reservationRepository): Response
+    public function detailUser(ReservationRepository $reservationRepository, HostTableRepository $hostTableRepository): Response
     {
         $user = $this->getUser();
         dump($user);
         $resa= $reservationRepository->findBy(['user' => $user]);
         dump($resa);
+        $tables = $hostTableRepository->findBy(['user' => $user]);
+
         return $this->render('user/show.html.twig', [
             'user' => $user,
             'reservations' => $resa,
+            'tables' => $tables
         ]);
     }
 
