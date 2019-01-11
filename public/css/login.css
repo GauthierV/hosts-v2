@@ -28,6 +28,8 @@ form{
     box-sizing: border-box;
     font-size: 14px;
     height: 300px;
+    display: flex;
+    flex-direction: column;
 }
 
 .btn{
