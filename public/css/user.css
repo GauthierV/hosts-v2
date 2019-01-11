@@ -11,8 +11,8 @@ h1{
 .table{
     margin-left: auto;
     margin-right: auto;
-    height: 600px;
-    width: 300px;
+    height: 500px;
+    width: 350px;
     border: 2px solid grey;
     text-align: center;
 }
@@ -22,12 +22,11 @@ a.bouton {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    width: 7%;
-    padding: 18px;
-    border: 1px solid;
+    width: 9%;
+    border-radius: 5px;
     background-color: grey;
     color: white;
-    height: 45px;
+    height: 40px;
     font-weight: bold;
     font-size: 15px;
     text-align: center;
