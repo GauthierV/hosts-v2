@@ -7,7 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReservationType extends AbstractType
+class ReservationInTableType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -22,11 +22,9 @@ class ReservationType extends AbstractType
 //                'choice_label' => 'date',
 //            ))
             ->add('guestNumber')
-            ->add('user', null, array(
-                'choice_label' => 'email'
-            ))
         ;
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

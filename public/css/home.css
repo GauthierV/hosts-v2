@@ -139,6 +139,7 @@ a.bouton2:hover {
 
 .result{
     display: flex;
+    flex-wrap: wrap;
     height: 590px;
     margin: 0px;
     padding: 0px;
