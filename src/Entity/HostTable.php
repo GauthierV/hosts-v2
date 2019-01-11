@@ -63,6 +63,13 @@ class HostTable
      */
     private $meals;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     *
+     */
+    private $user;
+
     public function __construct()
     {
         $this->meals = new ArrayCollection();
@@ -199,4 +206,23 @@ class HostTable
 
         return $this;
     }
+
+    /**
+     * @return User
+     */
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    /**
+     * @return User
+     */
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+
 }

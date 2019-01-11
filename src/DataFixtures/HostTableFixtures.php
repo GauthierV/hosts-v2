@@ -4,11 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\HostTable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\File;
 
-class HostTableFixtures extends Fixture
+class HostTableFixtures extends Fixture implements DependentFixtureInterface
 {
 
     public function load(ObjectManager $manager)
@@ -24,6 +23,7 @@ class HostTableFixtures extends Fixture
             $table1->setTown('Nantes');
             $table1->setZipCode('44000');
             $table1->setImage($imgname);
+            $table1->setUser($this->getReference('vlad'));
             $manager->persist($table1);
             $this->addReference('host-nantes', $table1);
             $manager->flush();
@@ -37,6 +37,7 @@ class HostTableFixtures extends Fixture
             $table1->setTown('Rennes');
             $table1->setZipCode('35000');
             $table1->setImage($imgname);
+            $table1->setUser($this->getReference('macron'));
             $manager->persist($table1);
             $this->addReference('host-rennes', $table1);
             $manager->flush();
@@ -50,9 +51,14 @@ class HostTableFixtures extends Fixture
             $table1->setTown('Paris');
             $table1->setZipCode('75000');
             $table1->setImage($imgname);
+            $table1->setUser($this->getReference('vlad'));
             $manager->persist($table1);
             $this->addReference('host-paris', $table1);
             $manager->flush();
         }
+    }
+    public function getDependencies()
+    {
+        return [UserFixtures::class];
     }
 }

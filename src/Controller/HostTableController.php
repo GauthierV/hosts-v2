@@ -34,24 +34,27 @@ class HostTableController extends AbstractController
     }
     /**
      * @Route("/new", name="host_table_new", methods={"GET","POST"})
-     * @IsGranted("ROLE_ADMIN")
+     * @IsGranted("ROLE_HOST")
      */
     public function new(Request $request): Response
     {
         $hostTable = new HostTable();
         $form = $this->createForm(HostTableType::class, $hostTable);
         $form->handleRequest($request);
-if ($this->isGranted())
-        if ($form->isSubmitted() && $form->isValid()) {
 
-            $hostTable = $this->uploadImage($hostTable);
+    if ($form->isSubmitted() && $form->isValid()) {
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($hostTable);
-            $entityManager->flush();
+        $hostTable = $this->uploadImage($hostTable);
 
-            return $this->redirectToRoute('host_table_index');
-        }
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($hostTable);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('host_table_index');
+
+
+}
+
 
         return $this->render('host_table/new.html.twig', [
             'host_table' => $hostTable,
