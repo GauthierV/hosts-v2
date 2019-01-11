@@ -4,10 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Meal;
 use App\Entity\Reservation;
+use App\Form\MealCreateType;
 use App\Form\MealType;
 use App\Form\ReservationInMealType;
 use App\Form\ReservationInTableType;
 use App\Repository\MealRepository;
+use App\Services\PersisterFlusher;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,6 +47,29 @@ class MealController extends AbstractController
             $entityManager->flush();
 
             return $this->redirectToRoute('meal_index');
+        }
+
+        return $this->render('meal/new.html.twig', [
+            'meal' => $meal,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("/create", name="create_meal", methods={"GET","POST"})
+     * @IsGranted("ROLE_HOST")
+     */
+    public function createMeal(Request $request, PersisterFlusher $flusher): Response
+    {
+        $meal = new Meal();
+        $form = $this->createForm(MealCreateType::class, $meal, array('user' => $this->getUser()));
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $meal->setRemainingCapacity($meal->getCapacity());
+            $mealID = $flusher->persistAndFlush($meal);
+            return $this->redirectToRoute('meal_show', array('id' => $mealID));
         }
 
         return $this->render('meal/new.html.twig', [
