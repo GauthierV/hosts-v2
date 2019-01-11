@@ -16,6 +16,7 @@ class MealFixtures extends Fixture
         
 
             $meal1 = new meal();
+            $meal1->setName('Raclette chez Toto');
             $meal1->setHostTable($this->getReference('host-nantes'));
             $meal1->setCapacity(5);
             $meal1->setPrice(15);
@@ -26,6 +27,7 @@ class MealFixtures extends Fixture
             $manager->flush();
             
             $meal2 = new meal();
+            $meal2->setName('Fondue chez Titi');
             $meal2->setHostTable($this->getReference('host-rennes'));
             $meal2->setCapacity(6);
             $meal2->setPrice(35);
@@ -36,6 +38,7 @@ class MealFixtures extends Fixture
             $manager->flush();
             
             $meal3 = new meal();
+            $meal3->setName('Tartiflette chez Tata');
             $meal3->setHostTable($this->getReference('host-paris'));
             $meal3->setCapacity(7);
             $meal3->setPrice(55);

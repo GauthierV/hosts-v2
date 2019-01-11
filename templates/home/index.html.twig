@@ -56,9 +56,8 @@
             {#</form>#}
             {{ form_start(searchForm) }}
             {{ form_widget(searchForm) }}
-            <button class="bouton2">Rechercher</button>
+            <button class="bouton">Rechercher</button>
             {{ form_end(searchForm) }}
-
         </div>
 
         <!--RESULT-->
@@ -77,15 +76,15 @@
                 {#{% endfor %}#}
                 {% for meal in listMeal %}
                     <div class="article">
-                        <h2>{{ meal.hostTable.name }}</h2>
+                        <h2>{{ meal.name }}</h2>
                         <img src="{{ asset('uploads/table_images/' ~ meal.hostTable.image ) }}" alt="resto" height="280px">
-                        <p>{{ meal.hostTable.description }}</p>
+                        <p>Lieu : {{ meal.hostTable.name }}</p>
                         <p>Menu : </p>
                         <p>{{ meal.menu }}</p>
                         <p>Date : </p>
                         <p>Le {{ meal.date | date ("m/d/Y")}} à {{ meal.date | date ("H")}}h</p>
                         <a href="{{ path('meal_show', {'id': meal.id}) }}" style="padding : 10px 5px 5px">
-                            <button type="button">Détail</button>
+                            <button class="bouton2" type="button">Détail</button>
                         </a>
                     </div>
                 {% endfor %}

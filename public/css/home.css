@@ -42,11 +42,14 @@ a{
     align-items: center;
     align-content: center;
     justify-content: space-around;
-    background-color: rgb(153, 157, 161);
+    background-color: gray;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     letter-spacing: 1px;
 }
 
+p{
+    color: white;
+}
 
 
 /* SIDEBAR */
@@ -73,16 +76,17 @@ h3{
     text-align: center;
 }
 .recherche{
+    display: flex;
+    flex-flow: column wrap ;
+    align-items: center;
     background-color: #eeeeee;
     border-style: solid;
     border-width: 1px;
     border-color: #dddddd;
     padding: 53px;
     margin: 47px;
-    width: 20%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+    width: 15%;
+    height: 90%;
     text-align: center;
 }
 
@@ -104,33 +108,40 @@ h3{
     padding: 5px;
 }
 
-.search{
-    height: 35px;
-    width: 100%;
-    display: flex;
-    flex-flow: column wrap;
-    align-items: center;
-}
 
-a.bouton2 {
+.bouton2 {
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
+    align-items: center;
     width: 100%;
     padding: 9px 18px;
-    border: 1px solid yellow;
+    border: 2px solid darkslategrey;
     background-color: white;
     color: rgb(54, 52, 52);
     height: 30px;
     font-weight: bold;
     font-size: 14px;
+    border-radius: 10px;
 }
 
-a.bouton2:hover {
-    background: grey;
-    border: 1px solid grey;
-    color:white;
+
+.bouton2{
+    display:flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    padding: 9px 18px;
+    border: 1px solid gray();
+    background-color: white;
+    color: rgb(54, 52, 52);
+    height: 30px;
+    font-weight: bold;
+    border-radius: 5px;
 }
+
+
 
 /* RESULT */
 
@@ -147,6 +158,11 @@ a.bouton2:hover {
     text-align: center;
 }
 
+.table{
+    display: flex;
+    flex-direction: row;
+}
+
 h2{
     letter-spacing: 2px;
     font-weight: lighter;
@@ -155,11 +171,12 @@ h2{
 
 .article{
     display: flex;
-    flex-flow: column;
-    margin: 15px;
+    flex-direction: column;
+    margin: 20px;
     width: 30%;
-    height: 500px;
+    height: 550px;
     background-color: rgb(245, 243, 243);
     border: 2px solid grey;
+    justify-content: center;
 }
 

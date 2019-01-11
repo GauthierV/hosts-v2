@@ -41,7 +41,7 @@ class HostTableController extends AbstractController
         $hostTable = new HostTable();
         $form = $this->createForm(HostTableType::class, $hostTable);
         $form->handleRequest($request);
-
+if ($this->isGranted())
         if ($form->isSubmitted() && $form->isValid()) {
 
             $hostTable = $this->uploadImage($hostTable);
@@ -68,16 +68,11 @@ class HostTableController extends AbstractController
      */
     public function show(HostTable $hostTable): Response
     {
-        $reservation = new Reservation();
-
-        $form = $this->createForm(ReservationInTableType::class, $reservation, [
-            'action' => $this->generateUrl('new_reservation'),
-        ]);
-
-
+        $meals = $hostTable->getMeals();    
+        dump($meals);
         return $this->render('host_table/show.html.twig', [
             'host_table' => $hostTable,
-            'form_resa' => $form->createView()
+            'meals' => $meals
         ]);
     }
 

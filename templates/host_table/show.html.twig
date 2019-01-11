@@ -18,12 +18,11 @@
                     <p>{{ host_table.description }}</p>
                     <h5>Prix moyen :</h5>
                     <p>{{ host_table.priceRange }}</p>
-                </div>
-                <div class="card-footer">
-                    {{ form_start(form_resa) }}
-                    {{ form_widget(form_resa) }}
-                    <button class="btn-primary" type="submit">Reserver</button>
-                    {{ form_end(form_resa) }}
+                    <h3>Evenements à venir :</h3>
+                    {% for meal in meals %}
+                        <a href="{{ path('meal_show', {'id': meal.id}) }}"><p>Le {{ meal.date | date ("m/d/Y") }}
+                                à {{ meal.date | date ("H") }}h</p></a>
+                    {% endfor %}
                 </div>
             </div>
             <div class="backgroundmap">
