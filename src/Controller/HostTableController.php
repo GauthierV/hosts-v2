@@ -113,6 +113,16 @@ class HostTableController extends AbstractController
         ]);
     }
 
+
+//    /**
+//     * @Route("/{id}/edit", name="host_table_edit", methods={"GET","POST"})
+//     * @IsGranted("ROLE_HOST")
+//     */
+//    public function  (Request $request, HostTable $hostTable): Response
+//    {
+//        
+//    }
+
     /**
      * @Route("/{id}", name="host_table_delete", methods={"DELETE"})
      * @IsGranted("ROLE_ADMIN")
