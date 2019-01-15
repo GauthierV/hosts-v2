@@ -95,7 +95,6 @@ class UserController extends AbstractController
         $user = $this->getUser();
         dump($user);
         $resa= $reservationRepository->findBy(['user' => $user]);
-        dump($resa);
         $tables = $hostTableRepository->findBy(['user' => $user]);
 
         return $this->render('user/show.html.twig', [
